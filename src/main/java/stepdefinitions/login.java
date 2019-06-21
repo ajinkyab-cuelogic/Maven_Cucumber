@@ -54,5 +54,10 @@ public class login extends BaseUtil{
 		login.enterEmailandPassword(email, pasword);
 		System.out.println("executed step with params");
 	}
+	
+	@Then("^I should see the Login page with error message$")
+	public void verifyIncorrectLogin() throws Throwable {
+		Assert.assertEquals("Login page error messafe text does not match",login.getErrorMessageText(),"Invalid email or password.");
+	}
 
 }

@@ -1,9 +1,11 @@
 package pageobject;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 
 public class LoginPage {
 
@@ -17,6 +19,9 @@ public class LoginPage {
 	@FindBy(name="commit")
 	WebElement submit;
 	
+	@FindBy(xpath="//div[contains(@class,'alert-danger')]")
+	WebElement errorMsg;
+
 	public LoginPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
@@ -54,5 +59,18 @@ public class LoginPage {
 		enterPassword(pasword);
 		System.out.println("In enterEmailandPassword method");
 	}
+	
+	public String getErrorMessageText() throws Exception {
+		String text = null;
+		try {
+			text = errorMsg.getAttribute("innerText");
+		} catch (Exception e) {
+			System.out.println("Could not get Success message text");
+			throw (e);
+		}
+		return text;
+	}
+	
+	
 
 }

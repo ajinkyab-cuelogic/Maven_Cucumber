@@ -7,11 +7,11 @@ Feature: Login Feature
     And I click on login button
     Then I should see the Home page
 
-  Scenario: Check Login with parameters
+  Scenario: Check Login with incorrect parameters
     Given I navigate to login page
     When I enter email as "aj-agent@yopmail.com" and password as "Pass@12345"
     And I click on login button
-    Then I should see the Home page
+    Then I should see the Login page with error message
   #@tag2
   #Scenario Outline: Title of your scenario outline
     #Given I want to write a step with <name>
