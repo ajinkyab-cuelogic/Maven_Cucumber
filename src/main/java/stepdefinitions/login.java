@@ -2,10 +2,11 @@ package stepdefinitions;
 
 
 import org.junit.Assert;
+
 import Base.BaseUtil;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pageobject.HomePage;
 import pageobject.LoginPage;
 
@@ -25,7 +26,7 @@ public class login extends BaseUtil{
 	@Given("^I navigate to login page$")
 	public void i_navigate_to_login_page() throws Throwable {
 		System.out.println(base.driver +"       in given : driver object");
-		base.driver.get("https://admin-stg.travelpass.com");
+//		base.driver.get("https://admin-stg.travelpass.com");
 		Assert.assertEquals("Login page not found", base.driver.getTitle(), "Phalanx");
 	}
 
@@ -33,7 +34,7 @@ public class login extends BaseUtil{
 	public void i_enter_email_and_password() throws Throwable {
 		login = new LoginPage(base.driver);
 		login.enterEmail("aj-agent@yopmail.com");
-		login.enterPassword("pass#123");
+		login.enterPassword("Pass@1234");
 	}
 
 	@When("^I click on login button$")

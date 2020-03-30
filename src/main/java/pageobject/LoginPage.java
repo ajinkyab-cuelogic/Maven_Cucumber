@@ -70,7 +70,7 @@ public class LoginPage {
 		}
 		return text;
 	}
-	
+
 	
 
 }

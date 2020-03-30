@@ -1,4 +1,4 @@
-package Base;
+/*package Base;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -8,9 +8,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class DriverManager {
-	public WebDriver driver;
-	 
+public class DriverManager extends BaseUtil {
+	
+	private BaseUtil base;
+	
+	public DriverManager(BaseUtil base) {
+		this.base = base;
+	}
+	
     public WebDriver getDriver(String browser) throws MalformedURLException {
         //Set Browser Type
         DesiredCapabilities caps = null;
@@ -25,3 +30,4 @@ public class DriverManager {
     }
 }
 
+*/
