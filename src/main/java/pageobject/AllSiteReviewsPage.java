@@ -1,52 +1,33 @@
 package pageobject;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
+import Base.BaseActions;
 
 
-public class AllSiteReviewsPage {
+public class AllSiteReviewsPage extends BaseActions{
 	
 	
-	@FindBy(xpath="//input[@value='Search']")
-	WebElement btn_Search;
-	
-	@FindBy(id="selected_reviews_")
-	WebElement checkbox_Review;
-	
-	@FindBy(xpath="//input[@value='Accept']")
-	WebElement btn_Accept;
-
-	@FindBy(xpath="//input[@value='Delete']")
-	WebElement btn_Delete;
-	
-	@FindBy(xpath="//input[@value='Decline']")
-	WebElement btn_Decline;
-	
-	@FindBy(id="is_deleted")
-	WebElement dropdown_Status;
-	
-	@FindBy(xpath="//a[contains(.,'Guest Reviews ')]")
-	WebElement mainmenu_GuestReviews;
-	
-	@FindBy(xpath="//a[contains(.,'All Site Reviews')]")
-	WebElement submenu_AllSiteReviews;
-	
-	@FindBy(xpath="//div[contains(@class,'alert-success')]")
-	WebElement msg_Success;
+	By search_button = By.xpath("//input[@value='Search']");	
+	By checkbox_revives = By.id("selected_reviews_");
+	By button_accept = By.xpath("//input[@value='Accept']");
+	By button_delete = By.xpath("//input[@value='Delete']");	
+	By button_decline = By.xpath("//input[@value='Decline']");
+	By dropdown_status = By.id("is_deleted");
+	By mainment_guest_reviews = By.xpath("//a[contains(.,'Guest Reviews ')]");
+	By submenu_all_site_reviews = By.xpath("//a[contains(.,'All Site Reviews')]");
+	By success_message = By.xpath("//div[contains(@class,'alert-success')]");
 	
 	
 	public AllSiteReviewsPage(WebDriver driver) {
-		PageFactory.initElements(driver, this);
+		super(driver);
 	}
 	
 
 	public void clickOnMainMenuGuestReviews() throws Exception {
 		try {
-			mainmenu_GuestReviews.click();
+			clickElement(mainment_guest_reviews);
 			System.out.println("Main menu Guest Reviews clicked");
 		}
 
@@ -60,7 +41,7 @@ public class AllSiteReviewsPage {
 
 	public void clickOnSubmenuAllSiteReviews() throws Exception {
 		try {
-			submenu_AllSiteReviews.click();
+			clickElement(submenu_all_site_reviews);
 			System.out.println("Submenu All Site Reviews clicked");
 		}
 
@@ -75,7 +56,7 @@ public class AllSiteReviewsPage {
 	public String getSuccessMessageText() throws Exception {
 		String text = null;
 		try {
-			text = msg_Success.getAttribute("innerText");
+			text = getElementText(success_message);
 		} catch (Exception e) {
 			System.out.println("Could not get Success message text");
 			throw (e);
@@ -83,27 +64,9 @@ public class AllSiteReviewsPage {
 		return text;
 	}
 	
-
-	public Select drpdown_status() throws Exception {
-
-		Select select = null;
-		try {
-			select = new Select(dropdown_Status);
-			System.out.println("Status drop down Found");
-		}
-
-		catch (Exception e) {
-			System.out.println("Status drop down not found");
-		}
-		return select;
-	}
-
-
-
-	
 	public void clickReviewCheckbox() throws Exception {
 		try {
-			checkbox_Review.click();
+			clickUnselectedCheckbox(checkbox_revives);
 			System.out.println("Review checkbox clicked");
 		}
 		
@@ -118,7 +81,7 @@ public class AllSiteReviewsPage {
 	
 	public void clickAcceptButton() throws Exception {
 		try {
-			btn_Accept.click();
+			clickElement(button_accept);
 			System.out.println("Accept button clicked");
 		}
 		
@@ -132,7 +95,7 @@ public class AllSiteReviewsPage {
 
 	public void clickDeleteButton() throws Exception {
 		try {
-			btn_Delete.click();
+			clickElement(button_delete);
 			System.out.println("Delete button clicked");
 		}
 		
@@ -144,7 +107,7 @@ public class AllSiteReviewsPage {
 
 	public void clickDeclineButton() throws Exception {
 		try {
-			btn_Decline.click();
+			clickElement(button_decline);
 			System.out.println("Decline button clicked");
 		}
 		

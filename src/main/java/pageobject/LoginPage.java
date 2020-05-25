@@ -70,7 +70,11 @@ public class LoginPage {
 		}
 		return text;
 	}
-
 	
+	public void doValidLogin(String email, String pasword) {
+		enterEmail(email);
+		enterPassword(pasword);
+		clickSubmit();
+	}
 
 }

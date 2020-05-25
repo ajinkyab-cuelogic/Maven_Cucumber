@@ -12,7 +12,7 @@ public class JunitParallel {
 	@Test
 	public void test() throws IOException {
 		String[] params = new String[] { "-p", "timeline:target/cucumber-parallel-report", "-g",
-				"stepdefinitions", "src/test/java/Features/", "--threads", "6" };
+				"stepdefinitions", "src/test/resources/Features/", "--threads", "5" };
 		Main.run(params, Thread.currentThread().getContextClassLoader());
 	}
 

@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 
 
 @CucumberOptions(
-				features="src/test/java/Features",
+				features="src/test/resources/Features/CCIPAddress.feature",
 				glue={"stepdefinitions"},
 				plugin = { "pretty", "html:target/site/cucumber-pretty", "json:target/cucumber.json","junit:target/cucumber.xml"}
 		)

@@ -2,7 +2,7 @@ package stepdefinitions;
 
 import org.junit.Assert;
 
-import Base.BaseUtil;
+import context.TestContext;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,23 +10,24 @@ import pageobject.AllSiteReviewsPage;
 import pageobject.LoginPage;
 
 
-public class AllSiteReviews extends BaseUtil {
+public class AllSiteReviews {
 
-	private BaseUtil base;
+	private TestContext context;
+	
+	public AllSiteReviews(TestContext context) {
+		this.context = context;
+	}
+	
 	AllSiteReviewsPage allsiterev;
 	LoginPage login;
 	
-	public AllSiteReviews(BaseUtil base) {
-		this.base = base;
-	}
-
 	@Given("^I am logged in as admin user and click on Guest Reviews menu$")
 	public void navigateToGuestReviews() throws Exception {
 		try {
-			login = new LoginPage(base.driver);
-			login.enterEmailandPassword("aj-agent@yopmail.com", "Pass@1234");
-			login.clickSubmit();
-			allsiterev = new AllSiteReviewsPage(base.driver);
+			login = context.getPageObjectManager().getLogingPage();
+			login.doValidLogin(context.getConfigFileReader().getValidEmail(), 
+					context.getConfigFileReader().getValidPassword());
+			allsiterev = context.getPageObjectManager().getAllSiteReviewPage();
 			allsiterev.clickOnMainMenuGuestReviews();
 		}
 
