@@ -57,8 +57,7 @@ public class IPAddress extends BaseActions {
 	
 	public void enterIPAddress(String ipaddress) throws Exception {
 		try {
-			//setElementText(textbox_ip_address, ipaddress);
-			sendKeysWithAjax(textbox_ip_address, ipaddress);
+			setElementText(textbox_ip_address, ipaddress);
 			System.out.println("IP address entered");
 		}
 		
@@ -71,8 +70,7 @@ public class IPAddress extends BaseActions {
 	
 	public void enterLabel(String label) throws Exception {
 		try {
-			//setElementText(textbox_label, label);
-			sendKeysWithAjax(textbox_label, label);
+			setElementText(textbox_label, label);
 			System.out.println("Label entered");
 		}
 		
@@ -99,7 +97,6 @@ public class IPAddress extends BaseActions {
 	public void clickCallCenterIpCheckbox() throws Exception {
 		try {
 			clickUnselectedCheckbox(checkbox_call_center_ip);
-			ajaxClick(checkbox_call_center_ip);
 			System.out.println("Call Center Ip checkbox clicked");
 		}
 		
@@ -124,7 +121,7 @@ public class IPAddress extends BaseActions {
 		}
 	}
 	
-	public void clickCreateButton() throws Exception {
+	public void clickSubmitButton() throws Exception {
 		try {
 			clickElement(button_submit);
 			System.out.println("Create button clicked");
@@ -135,18 +132,7 @@ public class IPAddress extends BaseActions {
 			throw(e);
 		}
 	}
-	
-	public void clickUpdateButton() throws Exception {
-		try {
-			clickElement(button_submit);
-			System.out.println("Update button clicked");
-		}
-		
-		catch (Exception e) {
-			System.out.println("Update button not clicked");
-			throw(e);
-		}
-	}
+
 	
 	public String getSuccessMessageText() throws Exception {
 		return getElementText(message_success);

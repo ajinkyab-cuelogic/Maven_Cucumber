@@ -50,8 +50,8 @@ public abstract class BaseActions {
 	}
 	
 	public void setElementText(By locator,String text) {
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-		element.sendKeys(text);	
+		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		element.sendKeys(text);
 	}
 	
 	public void setElementText(WebElement element,String text) {
@@ -64,9 +64,9 @@ public abstract class BaseActions {
 	}
 	
 	public void clickUnselectedCheckbox(By locator) {
-		WebElement checkboox = wait.until(ExpectedConditions.elementToBeClickable(locator));
+		WebElement checkboox = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 		if(!checkboox.isSelected()) {
-			checkboox.click();
+			performClick(checkboox);
 		}
 	}
 
@@ -76,8 +76,8 @@ public abstract class BaseActions {
 	}
 
 	public void clickElement(By by) {
-		wait.until(ExpectedConditions.elementToBeClickable(by));
-		(driver.findElement(by)).click();
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
+		element.click();
 	}
 	
 	public void acceptConfirmationPopup() {
@@ -225,10 +225,18 @@ public abstract class BaseActions {
 		select.selectByIndex(index);
 	}
 
-	public void getDropDownListByIndex(By locator, int index) {
-		Select select = new Select(driver.findElement(locator));
+	public void setDropDownOptionByIndex(By locator, int index) {
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+		Select select = new Select(element);
 		select.selectByIndex(index);
 	}
+	
+	public void unsetDropDownOptionByIndex(By locator, int index) {
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+		Select select = new Select(element);
+		select.deselectByIndex(index);
+	}
+
 
 	public void getDropDownListByText(WebElement element, String text) {
 		Select select = new Select(element);
@@ -236,8 +244,9 @@ public abstract class BaseActions {
 
 	}
 
-	public void getDropDownListByText(By locator, String text) {
-		Select select = new Select(driver.findElement(locator));
+	public void setDropDownOptionByText(By locator, String text) {
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+		Select select = new Select(element);
 		select.selectByVisibleText(text);
 
 	}

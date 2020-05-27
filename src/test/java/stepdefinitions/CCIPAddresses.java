@@ -16,18 +16,20 @@ public class CCIPAddresses {
 	
 	
 	LoginPage login;
-	HashMap<String, String> ipdata;
+	HashMap<String, String> ipTestData;
 	private TestContext context;
 	private IPAddress ipaddress;
 	private AllIPAddressesPage allipaddress;
 	
 	public CCIPAddresses(TestContext context) {
 		this.context = context;
+		context.setExecutingTestCaseFileName(this.getClass().getSimpleName());
 	}
 
 	@Given("^I am logged in as admin user and click on CC IP Addresses menu$")
 	public void navigateToCCIPAddressMenu() throws Exception {
 		try {
+			ipTestData = context.getTestCaseData().get("IPAddressData");
 			login = context.getPageObjectManager().getLogingPage();
 			login.doValidLogin(context.getConfigFileReader().getValidEmail(), 
 					context.getConfigFileReader().getValidPassword());
@@ -56,7 +58,7 @@ public class CCIPAddresses {
 	@When("^I enter IP Address details$")
 	public void enterIPAddressDetails() throws Exception {
 		try {
-			ipaddress.enterIpAdddressDetails("192.178.10.1", "aj_test");
+			ipaddress.enterIpAdddressDetails(ipTestData.get("ipadd"), ipTestData.get("lable"));
 			System.out.println("Ip Address Details entered successfully");
 		} 
 		
@@ -69,7 +71,7 @@ public class CCIPAddresses {
 	@When("^I click on create button on Add CC IP Address$")
 	public void clickCreateButton() throws Exception {
 		try {
-			ipaddress.clickCreateButton();
+			ipaddress.clickSubmitButton();
 		}
 		
 		catch (Exception e) {
@@ -111,9 +113,9 @@ public class CCIPAddresses {
 	@When("^I update CC IP Address details and click on Update button")
 	public void updateCCIPAddressDetails() throws Exception {
 		try {
-			ipaddress.enterIPAddress(ipdata.get("newipadd"));
-			ipaddress.enterLabel(ipdata.get("newlabel"));
-			ipaddress.clickUpdateButton();
+			ipaddress.enterIPAddress(ipTestData.get("newipadd"));
+			ipaddress.enterLabel(ipTestData.get("newlabel"));
+			ipaddress.clickSubmitButton();
 			System.out.println("CC IP Address details updated");
 		}
 		
@@ -144,7 +146,7 @@ public class CCIPAddresses {
 	public void searchCCIPAddressAndClickOnEditICon() throws Exception {
 		try {
 			allipaddress = context.getPageObjectManager().getAllIPAddressesPage();
-			allipaddress.searchCCIPAddress("192.178.10.1", "aj_test");
+			allipaddress.searchCCIPAddress(ipTestData.get("ipadd"), ipTestData.get("label"));
 			allipaddress.clickEditIPAddressIcon();
 		}
 		
@@ -158,7 +160,7 @@ public class CCIPAddresses {
 	@When("^I search CC IP address and I click on Delete IP Address icon$")
 	public void searchCCIPAddressAndClickOnDeleteIcon() throws Exception {
 		try {
-			allipaddress.searchCCIPAddress("192.178.10.1", "aj_test");
+			allipaddress.searchCCIPAddress(ipTestData.get("newipadd"), ipTestData.get("newlabel"));
 			allipaddress.clickDeleteIPAddressIcon();
 		}
 		

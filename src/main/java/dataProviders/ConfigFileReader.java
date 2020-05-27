@@ -117,5 +117,15 @@ public class ConfigFileReader {
     	}
     		
     }
+    
+    public String getTestDataDirectoryPath() {
+    	String testDataDirectoryPath = properties.getProperty("test-data-directory");
+    	if(testDataDirectoryPath != null) {
+    		return testDataDirectoryPath;
+    	}
+    	else {
+    		throw new RuntimeException("testDataDirectoryPath not specified in the Configuration.properties file.");
+    	}
+    }
 
 }
